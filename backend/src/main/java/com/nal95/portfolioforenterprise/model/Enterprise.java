@@ -13,5 +13,5 @@ public class Enterprise {
 
     private String enterpriseName;
 
-    private String urlId;
+    private String enterpriseToken;
 }
