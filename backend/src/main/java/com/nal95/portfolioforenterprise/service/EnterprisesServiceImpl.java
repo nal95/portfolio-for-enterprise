@@ -26,7 +26,7 @@ public class EnterprisesServiceImpl implements EnterprisesService {
 
         String token = UUID.randomUUID().toString();
 
-        enterprise.setEnterpriseName(enterpriseName);
+        enterprise.setEnterpriseName(enterpriseName.trim());
         enterprise.setEnterpriseToken(token);
 
         return enterprisesRepository.save(enterprise);
@@ -43,7 +43,8 @@ public class EnterprisesServiceImpl implements EnterprisesService {
         Enterprise enterprise = enterprisesRepository.findEnterpriseByEnterpriseToken(token).orElse(null);
         if (enterprise != null) {
             log.info("About to update this enterprise: " + enterprise);
-            enterprise.setEnterpriseName(newName);
+            enterprise.setEnterpriseName(newName.trim());
+            enterprise = enterprisesRepository.save(enterprise);
         }
 
         return enterprise;

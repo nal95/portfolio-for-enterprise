@@ -64,14 +64,17 @@ class EnterprisesServiceImplTest {
     void updateEnterpriseInfos() {
 
         Enterprise enterprise = new Enterprise();
+        enterprise.setId(1L);
         enterprise.setEnterpriseName("Adesso");
         enterprise.setEnterpriseToken("Adesso2023");
 
         when(enterpriseRepository.findEnterpriseByEnterpriseToken("Adesso2023")).thenReturn(Optional.of(enterprise));
+        when(enterpriseRepository.save(any())).thenReturn(enterprise);
 
         Enterprise updatedEnterprise = enterprisesServiceImpl.updateEnterpriseInfos("Adesso2023", "Adesso SE");
 
         assertThat(updatedEnterprise).isNotNull();
+        assertThat(updatedEnterprise.getId()).isEqualTo(1);
         assertThat(updatedEnterprise.getEnterpriseName()).isEqualTo("Adesso SE");
         assertThat(updatedEnterprise.getEnterpriseToken()).isEqualTo("Adesso2023");
     }
