@@ -2,6 +2,7 @@ package com.nal95.portfolioforenterprise.service;
 
 import com.nal95.portfolioforenterprise.model.Enterprise;
 import com.nal95.portfolioforenterprise.repos.EnterpriseRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class EnterprisesServiceImpl implements EnterprisesService {
     private final EnterpriseRepository enterprisesRepository;
 
@@ -40,6 +42,7 @@ public class EnterprisesServiceImpl implements EnterprisesService {
 
         Enterprise enterprise = enterprisesRepository.findEnterpriseByEnterpriseToken(token).orElse(null);
         if (enterprise != null) {
+            log.info("About to update this enterprise: " + enterprise);
             enterprise.setEnterpriseName(newName);
         }
 

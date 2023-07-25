@@ -21,8 +21,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -92,5 +91,31 @@ class EnterprisesControllerTest {
 
         assertThat(response).isNotNull();
         assertThat(response.getContentAsString()).isEqualTo("{\"id\":1,\"enterpriseName\":\"Adesso\",\"enterpriseToken\":\"12345\"}");
+    }
+
+    @Test
+    void updateEnterprise() throws Exception {
+
+        Enterprise existingEnterprise = new Enterprise();
+        existingEnterprise.setId(1L);
+        existingEnterprise.setEnterpriseName("Adesso");
+        existingEnterprise.setEnterpriseToken("12345");
+
+        Enterprise updatetedEnterprise = new Enterprise();
+        updatetedEnterprise.setId(1L);
+        updatetedEnterprise.setEnterpriseName("Adesso SE");
+        updatetedEnterprise.setEnterpriseToken("12345");
+
+        String requestObject = "{\"id\":1,\"enterpriseName\":\"Adesso SE\",\"enterpriseToken\":\"12345\"}";
+
+        when(enterprisesController.updateEnterprise(any(String.class), any(String.class))).thenReturn(ResponseEntity.ok(updatetedEnterprise));
+
+        mockMvc.perform(put("/portfolio/update/12345")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestObject))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value("1"))
+                .andExpect(jsonPath("$.enterpriseName").value("Adesso SE"))
+                .andExpect(jsonPath("$.enterpriseToken").value("12345"));
     }
 }

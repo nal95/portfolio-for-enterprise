@@ -24,7 +24,6 @@ public class EnterprisesController {
 
     @GetMapping("/enterprises")
     public ResponseEntity<List<Enterprise>> getAllEnterprise() {
-
         return ResponseEntity.ok(enterprisesService.getAllEnterprises());
     }
 
@@ -32,6 +31,11 @@ public class EnterprisesController {
     public ResponseEntity<Enterprise> saveEnterprise(@RequestBody String enterprise) {
         LOGGER.info("About to create this new enterprise: " + enterprise);
         return ResponseEntity.ok(enterprisesService.saveEnterprise(enterprise));
+    }
+
+    @PutMapping("/update/{enterpriseToken}")
+    public ResponseEntity<Enterprise> updateEnterprise(@PathVariable String enterpriseToken, @RequestBody String enterpriseName ) {
+        return ResponseEntity.ok(enterprisesService.updateEnterpriseInfos(enterpriseToken, enterpriseName));
     }
 
 }
