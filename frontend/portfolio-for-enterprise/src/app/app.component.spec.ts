@@ -1,29 +1,22 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import {Spectator} from "@ngneat/spectator";
+import {AppComponent} from "./app.component";
+import {createComponentFactory} from "@ngneat/spectator/jest";
+import {AppRoutingModule} from "./app-routing.module";
 
-describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
-  }));
+describe("AppComponent", () => {
+  let spectator: Spectator<AppComponent>;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  const createComponent = createComponentFactory({
+    component: AppComponent,
+    imports: [AppRoutingModule],
   });
 
-  it(`should have as title 'portfolio-for-enterprise'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('portfolio-for-enterprise');
+  beforeEach(() => {
+    spectator = createComponent();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('portfolio-for-enterprise app is running!');
+  it('should have a title', () => {
+    expect(spectator.component.title).toEqual('portfolio-for-enterprise')
   });
-});
+
+})

@@ -1,0 +1,24 @@
+.navbar-text{
+    position: relative;
+    top: 23px;
+    left: -114px;
+    font-size: 18px;
+    color: #afaea9;
+    font-family: Courier, monospace
+}
+.centered-image {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 80vh; /* 80% de la hauteur de l'écran */
+}
+
+.centered-image img {
+    max-width: 40%; /* 40% de la largeur de l'écran */
+    max-height: 40%; /* 40% de la hauteur de l'écran */
+    position: absolute;
+    right: -50%; /* Ajustez la valeur en pourcentage pour positionner l'image */
+    top: 25%; /* Ajustez la valeur en pourcentage pour positionner l'image verticalement */
+    transform: translateY(-50%); /* Déplacez l'image vers le haut de moitié de sa hauteur */
+}
