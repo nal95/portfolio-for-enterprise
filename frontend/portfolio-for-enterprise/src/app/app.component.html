@@ -1,32 +1,27 @@
-<body>
-  <nav class="navbar">
-    <div class="navbar-brand">
-      <img src="../assets/images/alex_text.png" alt="Logo" class="navbar-item">
-      <span class="navbar-item navbar-text"> Made with a lot of love 🥰</span>
-    </div>
+<nav class="navbar">
+  <div class="navbar-brand">
+    <img src="./assets/images/alex_text.png" alt="Logo" class="navbar-item">
+    <span class="navbar-item navbar-text"> Made with a lot of love 🥰</span>
+  </div>
 
-    <div class="navbar-menu">
-      <div class="navbar-end">
-        <a href="#" class="navbar-item">Option 1</a>
-        <a href="#" class="navbar-item">Option 2</a>
-        <a href="#" class="navbar-item">Option 3</a>
-        <a href="#" class="navbar-item">Option 4</a>
-      </div>
+  <div class="navbar-menu">
+    <div class="navbar-end">
+      <a href="#" class="navbar-item">Option 1</a>
+      <a href="#" class="navbar-item">Option 2</a>
+      <a href="#" class="navbar-item">Option 3</a>
+      <a href="#" class="navbar-item">Option 4</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <section class="section">
-    <div class="container">
-      <div class="columns">
-        <div class="column is-two-fifths centered-image">
-          <img src="../assets/images/alex.png" alt="Image au centre">
-        </div>
-        <div class="column">
-          ici il y'aura le text ...
-          <!-- Contenu de la deuxième colonne ici si nécessaire -->
-        </div>
-      </div>
-    </div>
-  </section>
-</body>
+<!-- Image principale -->
+<div class="container has-text-centered">
+  <div class="centered-image">
+    <img ngSrc="./assets/images/alex.png" alt="Mon image" height="290" width="290">
+  </div>
+</div>
+
+<!-- Box avec l'image SVG -->
+<app-svg-image-computer src ="./assets/svg/computer-screen-svgrepo-com.svg" [svg] = "true"></app-svg-image-computer>
+
 <router-outlet></router-outlet>
