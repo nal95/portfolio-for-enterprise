@@ -12,6 +12,23 @@
   font-family: Courier, monospace
 }
 
+/* Ajuster la largeur du dropdown pour qu'elle soit proportionnelle au contenu */
+.navbar-item.has-dropdown.is-active .navbar-dropdown {
+  display: block;
+  white-space: nowrap;
+}
+
+.navbar-dropdown .navbar-item {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Ajuster la largeur du dropdown pour qu'elle soit proportionnelle au contenu */
+.navbar-dropdown .navbar-item {
+  padding: 0.5em 1em;
+  min-width: fit-content;
+}
+
 .centered-image {
   display: flex;
   justify-content: center;
